@@ -7,6 +7,10 @@
 #include <sys/types.h>
 
 int main(int argc, char * argv[]){
+    /*
+    Использование:
+    Единственный необходимый аргумент - название файла, который будет выведен задом наперёд.
+    */
     int fh;
     if((fh = open(argv[1], O_RDONLY)) == -1){
         printf("Open error.\n");
