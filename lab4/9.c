@@ -36,10 +36,10 @@ int main(int argc, char * argv[]){
         fcntl(fd, F_SETLKW, lock);
         int i = 0;
         int val;
-        char c[10];
+        char c[7];
         do{
             sprintf(c, "%d, ", i);
-            if(write(fd, c, 10) == -1){
+            if(write(fd, &c, sizeof(c)) == -1){
                 
                 perror("[P] write error");
             }

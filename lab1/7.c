@@ -18,8 +18,8 @@ int main(int argc, char * argv[]){
     printf("inode: %d\n", st.st_ino);
     printf("Режим доступа: %d\n", st.st_mode);
     printf("Кол-во жестких ссылок: %d\n", st.st_nlink);
-    printf("Идентификатор пользователя-владельца: %d\n", st.st_uid);
-    printf("Идентификатор группы-владельца: %d\n", st.st_gid);
+    printf("ID пользователя-владельца: %d\n", st.st_uid);
+    printf("ID группы-владельца: %d\n", st.st_gid);
     printf("Тип устройства: %d\n", st.st_rdev);
     printf("Общий размер в байтах: %d\n", st.st_size);
     printf("Размер блока ввода-вывода: %d\n", st.st_blksize);
@@ -30,5 +30,14 @@ int main(int argc, char * argv[]){
     printf("Время последней модификации: %s\n", str_t);
     strftime (str_t, 100, "%d.%m.%y %X", localtime(&st.st_ctime));
     printf("Время последнего изменения: %s\n", str_t);
+
+    printf("\n");
+    int pid = getpid();
+    printf("ID текущего процесса: %d\n", pid);
+    int pgid = getpgid(pid);
+    printf("ID группы текущего процесса: %d\n", pgid);
+    int sid = getsid(pid);
+    printf("ID сессии текущего процесса: %d\n", sid);    
+
     return 0;
 }
