@@ -37,6 +37,7 @@ int main(int argc, char * argv[]){
     struct msqid_ds qds;
     msgctl(qd, IPC_STAT, &qds);
     char str_t[100];
+    printf("Mode = %d\n", qds.msg_perm.mode);
     printf("UID = %d\n", qds.msg_perm.uid);
     printf("GID = %d\n", qds.msg_perm.gid);
     printf("CUID = %d\n", qds.msg_perm.cuid);

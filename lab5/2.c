@@ -31,7 +31,7 @@ int main(int argc, char * argv[]){
         exit(0);
     }
     else{
-        printf("Message: type = %ld, text = %s\n", msg.mtype, msg.mtext);
+        printf("Сообщение: тип = %ld, текст = %s\n", msg.mtype, msg.mtext);
     }
     
     return 0;

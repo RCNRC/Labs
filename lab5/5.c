@@ -21,7 +21,6 @@ int main(int argc, char * argv[]){
     char option = argv[1][0];
     //strcpy(option, argv[1][0]);
     
-    printf("%c\n", option);
     if(option == 'f'){
         if((key = ftok(argv[2], 1)) == -1){
             perror("ftok");

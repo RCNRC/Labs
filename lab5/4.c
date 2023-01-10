@@ -32,7 +32,7 @@ int main(int argc, char * argv[]){
             exit(0);
         }
     }
-    printf("Message: type = %ld, text = %s\n", msg.mtype, msg.mtext);
+    printf("Сообщение: тип = %ld, текст = %s\n", msg.mtype, msg.mtext);
     if(msg.mtype!=msg_type){
         //printf("Message: type = %d, text = %s.\nThis is bullshit, exit(-1).\n", msg.mtype, msg.mtext);
         exit(-1);
