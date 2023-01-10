@@ -19,7 +19,6 @@ int main(int argc, char * argv[]){
 
     int msg_type = strtol(argv[2], NULL, 10);
     key_t key = ftok(argv[1], 1);
-    printf("key = %d, type = %d\n", key, msg_type);
     int qd = msgget(key, IPC_CREAT | 0666);
 
     struct msg {
