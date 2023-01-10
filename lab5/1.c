@@ -12,10 +12,13 @@
 #include <time.h>
 
 int main(int argc, char * argv[]){
-
     int fd = open("queue_file", O_CREAT | O_TRUNC, 0755);
 
     key_t key = ftok("queue_file", 1);
+    if(key == -1){
+        perror("ftok");
+        exit(0);
+    }
     int qd = msgget(key, IPC_CREAT | 0666);
     
     struct msg {
