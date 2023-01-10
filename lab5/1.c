@@ -13,7 +13,7 @@
 
 int main(int argc, char * argv[]){
 
-    int fd = open("queue_file", O_CREAT | O_TRUNC, 0777);
+    int fd = open("queue_file", O_CREAT | O_TRUNC, 0755);
 
     key_t key = ftok("queue_file", 1);
     printf("key = %d\n", key);
