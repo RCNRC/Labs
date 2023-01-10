@@ -16,7 +16,6 @@ int main(int argc, char * argv[]){
     int fd = open("queue_file", O_CREAT | O_TRUNC, 0755);
 
     key_t key = ftok("queue_file", 1);
-    printf("key = %d\n", key);
     int qd = msgget(key, IPC_CREAT | 0666);
     
     struct msg {
@@ -34,6 +33,7 @@ int main(int argc, char * argv[]){
         msgsnd(qd, &msg, scan, IPC_NOWAIT);
     }
     
+    printf("key = %d\n", key);
     struct msqid_ds qds;
     msgctl(qd, IPC_STAT, &qds);
     char str_t[100];
