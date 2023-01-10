@@ -26,8 +26,13 @@ int main(int argc, char * argv[]){
         char mtext[4096];
     } msg;
 
-    msgrcv(qd, &msg, 4096, msg_type, IPC_NOWAIT | MSG_NOERROR);
-    printf("Message: type = %d, text = %s\n", msg.mtype, msg.mtext);
+    if(msgrcv(qd, &msg, 4096, msg_type, IPC_NOWAIT | MSG_NOERROR) == -1){
+        perror("msgrcv");
+        if(errno==ENOMSG){
+            exit(0);
+        }
+    }
+    printf("Message: type = %ld, text = %s\n", msg.mtype, msg.mtext);
     if(msg.mtype!=msg_type){
         //printf("Message: type = %d, text = %s.\nThis is bullshit, exit(-1).\n", msg.mtype, msg.mtext);
         exit(-1);

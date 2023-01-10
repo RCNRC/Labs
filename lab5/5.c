@@ -18,12 +18,19 @@ int main(int argc, char * argv[]){
     */
 
     key_t key;
-    if(strcmp(argv[1], "f"))
-        if((key = ftok(argv[2], 1)) == -1)
+    char option = argv[1][0];
+    //strcpy(option, argv[1][0]);
+    
+    printf("%c\n", option);
+    if(option == 'f'){
+        if((key = ftok(argv[2], 1)) == -1){
             perror("ftok");
+        }
+    }
     else{
-        if(strcmp(argv[1], "k"))
+        if(option == 'k'){
             key = strtol(argv[2], NULL, 10);
+        }
         else{
             printf("Unknown option.\n");
             return -1;

@@ -19,6 +19,7 @@ int main(int argc, char * argv[]){
 
     int msg_type = strtol(argv[2], NULL, 10);
     key_t key = ftok(argv[1], 1);
+    printf("key = %d, type = %d\n", key, msg_type);
     int qd = msgget(key, IPC_CREAT | 0666);
 
     struct msg {
@@ -26,8 +27,13 @@ int main(int argc, char * argv[]){
         char mtext[4096];
     } msg;
 
-    msgrcv(qd, &msg, 4096, msg_type, 0);
-    printf("Message: type = %d, text = %s\n", msg.mtype, msg.mtext);
+    if(msgrcv(qd, &msg, 4096, msg_type, 0) == -1){
+        perror("msgrcv");
+        exit(0);
+    }
+    else{
+        printf("Message: type = %ld, text = %s\n", msg.mtype, msg.mtext);
+    }
     
     return 0;
 }

@@ -13,7 +13,10 @@
 
 int main(int argc, char * argv[]){
 
+    int fd = open("queue_file", O_CREAT | O_TRUNC, 0777);
+
     key_t key = ftok("queue_file", 1);
+    printf("key = %d\n", key);
     int qd = msgget(key, IPC_CREAT | 0666);
     
     struct msg {
@@ -44,7 +47,7 @@ int main(int argc, char * argv[]){
     printf("Last msgrcv time = %s\n", str_t);
     strftime (str_t, 100, "%d.%m.%y %X", localtime(&qds.msg_ctime));
     printf("Last change time = %s\n", str_t);
-    printf("Max bytes = %d\n", qds.msg_qbytes);
-    printf("Number of messages: %d\n", qds.msg_qnum);
+    printf("Max bytes = %ld\n", qds.msg_qbytes);
+    printf("Number of messages: %ld\n", qds.msg_qnum);
     return 0;
 }
